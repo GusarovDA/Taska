@@ -21,82 +21,104 @@ class RegisterScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: colorWhite,
       appBar: AppBar(
-        
         automaticallyImplyLeading: false,
-        toolbarHeight: screenHeight * (58 / designHeight),
+        toolbarHeight: screenHeight * (93 / designHeight),
         titleSpacing: 0,
-        title: Padding(
-          padding: EdgeInsets.only(
-            top: screenHeight * (16 / designHeight),
-            left: screenWidth * (24 / designWidth),
-          ),
-          child: SizedBox(
-            // color: Colors.amber,
-            height: screenHeight * (42 / designHeight),
-            width: screenWidth * (220 / designWidth),
-            child: Row(
-              
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: screenHeight * (42 / designHeight),
-                  width: screenWidth * (42 / designWidth),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: colorWhite,
-                      padding: EdgeInsets.zero,
-                      foregroundColor: colorWhite,
-                      side: BorderSide(color: colorBorderNoActive, width: 1),
-                      shape: CircleBorder(),
-                      elevation: 0,
-                      surfaceTintColor: Colors.transparent,
-                      shadowColor: Colors.transparent,
-                      
-                      fixedSize: Size(
-                        screenWidth * (42 / designWidth),
-                        screenHeight * (42 / designHeight),
-                      ),
-                    ),
-
-                    child: SizedBox(
-                      height: screenHeight * (42 / designHeight),
-                      width: screenWidth * (42 / designWidth),
-                      child: Center(
-                        child: Image(
-                          image: arrowBackImg,
-                          fit: BoxFit.scaleDown,
-                          alignment: Alignment.center,
-                          color: Color(0xFF002055),
-                          height: screenHeight * (16 / designHeight),
-                          width: screenWidth * (16 / designWidth),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: screenWidth * (66 / designWidth)),
-                SizedBox(
-                  width: screenWidth * (112 / designWidth),
-
-                  child: Text(
-                    textRegister,
-                    style: GoogleFonts.poppins(
-                      fontSize: screenWidth * (fontSize18 / designWidth),
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xFF002055),
-                      letterSpacing: 0,
-                      height:
-                          lineHeight18 / fontSize18, //screenHeight * (1 / 812)
-                    ),
-                  ),
-                ),
-              ],
+        title: Stack(
+          children: [
+            Container(
+              height: screenHeight * (93 / designHeight),
+              color: colorWhite,
             ),
-          ),
+            Positioned(
+              child: ClipRect(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: screenHeight * (16 / designHeight),
+                    left: screenWidth * (24 / designWidth),
+                  ),
+
+                  child: SizedBox(
+                    height: screenHeight * (42 / designHeight),
+                    width: screenWidth * (220 / designWidth),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: screenHeight * (42 / designHeight),
+                          width: screenWidth * (42 / designWidth),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: colorWhite,
+                              padding: EdgeInsets.zero,
+                              foregroundColor: colorWhite,
+                              side: BorderSide(
+                                color: colorBorderNoActive,
+                                width: 1,
+                              ),
+                              shape: CircleBorder(),
+                              elevation: 0,
+                              surfaceTintColor: Colors.transparent,
+                              shadowColor: Colors.transparent,
+
+                              fixedSize: Size(
+                                screenWidth * (42 / designWidth),
+                                screenHeight * (42 / designHeight),
+                              ),
+                            ),
+
+                            child: SizedBox(
+                              height: screenHeight * (42 / designHeight),
+                              width: screenWidth * (42 / designWidth),
+                              child: Center(
+                                child: Image(
+                                  image: arrowBackImg,
+                                  fit: BoxFit.scaleDown,
+                                  alignment: Alignment.center,
+                                  color: Color(0xFF002055),
+                                  height: screenHeight * (16 / designHeight),
+                                  width: screenWidth * (16 / designWidth),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: screenWidth * (66 / designWidth)),
+                        SizedBox(
+                          width: screenWidth * (112 / designWidth),
+
+                          child: Text(
+                            textRegister,
+                            style: GoogleFonts.poppins(
+                              fontSize:
+                                  screenWidth * (fontSize18 / designWidth),
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xFF002055),
+                              letterSpacing: 0,
+                              height: lineHeight18 / fontSize18,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: screenHeight * (44 / designHeight),
+              left: screenWidth * (287 / designWidth),
+              child: ClipRect(
+                child: DecorativeCircles(
+                  colorCircleTwo: colorCircleTwoRegister,
+                ),
+              ),
+            ),
+          ],
         ),
 
         backgroundColor: colorWhite,
@@ -107,24 +129,16 @@ class RegisterScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  left: screenWidth * ((287 - 24) / designWidth),
-                ),
-                child: DecorativeCircles(colorCircleTwo: colorCircleTwoRegister),
-              ),
-
               SizedBox(
                 width: screenWidth * (218 / designWidth),
                 child: Text(
                   'Создать аккаунт',
                   style: GoogleFonts.poppins(
-                    fontSize: screenWidth * (fontSize25 / designWidth), //
+                    fontSize: screenWidth * (fontSize25 / designWidth),
                     fontWeight: FontWeight.w600,
                     color: colorTextPrimary,
                     letterSpacing: 0,
-                    height:
-                        lineHeight25 / fontSize25, //screenHeight * (1 / 812)
+                    height: lineHeight25 / fontSize25,
                   ),
                   textAlign: TextAlign.left,
                 ),
@@ -134,7 +148,6 @@ class RegisterScreen extends StatelessWidget {
                 width: screenWidth,
               ),
               SizedBox(
-                // height: screenHeight * (24 / 812),
                 width: screenWidth * (249 / designWidth),
                 child: Text(
                   'Заполните поля для регистрации',
@@ -143,9 +156,7 @@ class RegisterScreen extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                     color: colorTextSecondary,
                     letterSpacing: 0,
-                    height:
-                        lineHeight24 /
-                        fontSize14, //screenHeight * ((24 / 14) / 812)
+                    height: lineHeight24 / fontSize14,
                   ),
                 ),
               ),

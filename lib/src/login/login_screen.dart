@@ -21,28 +21,49 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: colorWhite,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-
-        toolbarHeight: screenHeight * (58 / designHeight), // 142px
-        title: Center(
-          child: Padding(
-            padding: EdgeInsets.only(top: screenHeight * (28 / designHeight)),
-            child: Container(
-              // color: Colors.amber,
-              child: Text(
-                textLogin,
-                style: GoogleFonts.poppins(
-                  fontSize: screenWidth * (fontSize18 / designWidth),
-                  fontWeight: FontWeight.w400,
-                  color: colorTextPrimary,
-                  letterSpacing: 0,
-                  height: lineHeight18 / fontSize18, //screenHeight * (1 / 812)
+        titleSpacing: 0,
+        toolbarHeight: screenHeight * (93 / designHeight),
+        title: Stack(
+          children: [
+            Container(
+              height: screenHeight * (93 / designHeight),
+              color: colorWhite,
+            ),
+            Positioned(
+              child: ClipRect(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: screenHeight * (16 / designHeight),
+                  ),
+                  child: SizedBox(
+                    height: screenHeight * (42 / designHeight),
+                    child: Center(
+                      child: Text(
+                        textLogin,
+                        style: GoogleFonts.poppins(
+                          fontSize: screenWidth * (fontSize18 / designWidth),
+                          fontWeight: FontWeight.w400,
+                          color: colorTextPrimary,
+                          letterSpacing: 0,
+                          height:
+                              lineHeight18 /
+                              fontSize18,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-          // ),
+            Positioned(
+              top: screenHeight * (44 / designHeight),
+              left: screenWidth * (287 / designWidth),
+              child: ClipRect(
+                child: DecorativeCircles(colorCircleTwo: colorCircleTwoLogin),
+              ),
+            ),
+          ],
         ),
-
         backgroundColor: colorWhite,
       ),
       body: SingleChildScrollView(
@@ -51,13 +72,6 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  left: screenWidth * ((287 - 24) / designWidth),
-                ),
-                child: DecorativeCircles(colorCircleTwo: colorCircleTwoLogin),
-              ),
-
               SizedBox(
                 width: screenWidth * (248 / designWidth),
                 child: Text(
@@ -78,7 +92,6 @@ class LoginScreen extends StatelessWidget {
                 width: screenWidth,
               ),
               SizedBox(
-                // height: screenHeight * (24 / 812),
                 width: screenWidth * (249 / designWidth),
                 child: Text(
                   'Введите E-mail и пароль для входа',
@@ -87,9 +100,7 @@ class LoginScreen extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                     color: colorTextSecondary,
                     letterSpacing: 0,
-                    height:
-                        lineHeight24 /
-                        fontSize14, //screenHeight * ((24 / 14) / 812)
+                    height: lineHeight24 / fontSize14,
                   ),
                 ),
               ),
