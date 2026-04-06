@@ -13,6 +13,7 @@ dependencies:
   gradient_coloured_buttons: ^0.1.0
   blur: ^4.0.2
   table_calendar: ^3.2.0
+  intl: ^0.20.2
   
 
 dev_dependencies:

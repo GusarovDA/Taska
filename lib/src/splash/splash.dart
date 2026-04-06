@@ -27,8 +27,9 @@ class SplashScreen extends StatelessWidget {
           alignment: Alignment.topCenter,
         ),
 
-        Expanded(
-          child: Stack(
+        // Expanded(
+          // child:
+           Stack(
             children: [
               Container(
                 width: screenWidth,
@@ -196,7 +197,7 @@ class SplashScreen extends StatelessWidget {
               ),
             ],
           ),
-        ),
+        // ),
       ],
     );
   }

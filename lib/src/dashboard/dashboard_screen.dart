@@ -3,9 +3,11 @@ import 'package:flutter_dev_test/constans/colors.dart';
 import 'package:flutter_dev_test/constans/dimensions.dart';
 import 'package:flutter_dev_test/constans/strings.dart';
 import 'package:flutter_dev_test/design/images.dart';
+import 'package:flutter_dev_test/src/dashboard/widgets/calendar.dart';
 import 'package:flutter_dev_test/src/dashboard/widgets/search_bar.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+// import 'package:table_calendar/table_calendar.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -175,7 +177,7 @@ class DashboardScreen extends StatelessWidget {
                     Positioned(
                       top: screenHeight * (9 / designHeight),
                       child: ClipRect(
-                        child: Container(
+                        child: SizedBox(
                           // height: screenHeight * (42 / designHeight),
                           width: screenWidth * (143 / designWidth),
                           // color: colorButton,
@@ -198,7 +200,7 @@ class DashboardScreen extends StatelessWidget {
                     Positioned(
                       top: screenHeight * (42 / designHeight),
                       child: ClipRect(
-                        child: Container(
+                        child: SizedBox(
                           // height: screenHeight * (42 / designHeight),
                           width: screenWidth * (143 / designWidth),
                           // color: colorButton,
@@ -227,13 +229,16 @@ class DashboardScreen extends StatelessWidget {
                           width: screenWidth * (42 / designWidth),
                           child: ElevatedButton(
                             onPressed: () {
-                              showDatePicker(
+                              // showDatePicker(
+                              //   context: context,
+                              //   firstDate: DateTime(2020),
+                              //   lastDate: DateTime(2030),
+
+                              // );
+                              showDialog(
                                 context: context,
-                                firstDate: DateTime(2020),
-                                lastDate: DateTime(2030),
-                                
-                              )
-                              ;
+                                builder: (context) => TableBasicsExample(),
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: colorWhite,

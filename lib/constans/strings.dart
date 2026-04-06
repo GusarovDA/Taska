@@ -1,6 +1,7 @@
 
-
+const double fontSize10 = 10.46;
 const int fontSize14 = 14;
+const double fontSize15 = 14.48;
 const int fontSize16 = 16;
 const int fontSize18 = 18;
 const int fontSize20 = 20;
@@ -9,8 +10,10 @@ const int fontSize37 = 37;
 const int fontSize46 = 46;
 
 const int lineHeight14 = 14;
+const double lineHeight15 = 14.48;
 const int lineHeight16 = 16;
 const int lineHeight18 = 18;
+const double lineHeight19 = 19.3;
 const int lineHeight24 = 24;
 const int lineHeight25 = 25;
 const int lineHeight45 = 45;
