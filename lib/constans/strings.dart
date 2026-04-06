@@ -16,6 +16,7 @@ const int lineHeight25 = 25;
 const int lineHeight45 = 45;
 const int lineHeight48 = 48;
 
+const double opacity50 = 0.5;
 const double opacity60 = 0.6;
 const double opacity70 = 0.7;
 
@@ -25,6 +26,7 @@ const String textName = 'Введите имя';
 
 const String textLogin = 'Вход';
 const String textRegister = 'Регистрация';
+const String textDashboard = 'Мои задачи';
 
 const String textLoginDirect = 'Нет аккаунта? ';
 const String textLoginDirectButton = 'Зарегистрироваться';

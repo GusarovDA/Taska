@@ -15,6 +15,7 @@ const Color colorTextPrimarySplash = Color(0xFF756EF3);
 const Color colorTextSecondarySplash = Color(0xFF2F394B);
 const Color colorTextTertiarySplash = Color(0xFF8D8D8D);
 const Color colorTextButton = Color(0xFFFFFFFF);
+const Color colorTextSecondaryDashboard = Color(0xFF848A94);
 
 const Color colorTextRedirectButton = Color(0xFF756EF3);
 

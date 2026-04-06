@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dev_test/constans/colors.dart';
 import 'package:flutter_dev_test/constans/dimensions.dart';
 import 'package:flutter_dev_test/constans/strings.dart';
+import 'package:flutter_dev_test/src/dashboard/dashboard_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginAndRegisterButton extends StatelessWidget {
@@ -12,7 +13,12 @@ class LoginAndRegisterButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.sizeOf(context).width;
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DashboardScreen()),
+        );
+      },
       style: ElevatedButton.styleFrom(
         backgroundColor: Color(0xFF756EF3),
         shape: RoundedRectangleBorder(
