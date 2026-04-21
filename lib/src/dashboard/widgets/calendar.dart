@@ -22,132 +22,112 @@ class _TableBasicsExampleState extends State<TableBasicsExample> {
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.sizeOf(context).height;
     var screenWidth = MediaQuery.sizeOf(context).width;
+    debugPrint('$screenWidth,  $screenHeight');
     return Dialog(
       backgroundColor: colorWhite,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.87)),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TableCalendar(
+            locale: 'ru_RU',
+            firstDay: kFirstDay,
+            lastDay: kLastDay,
+            focusedDay: _focusedDay,
+            shouldFillViewport: false,
+            startingDayOfWeek: StartingDayOfWeek.monday,
+            headerStyle: HeaderStyle(
+              titleTextFormatter: (date, locale) {
+                return DateFormat('LLLL', locale).format(date).capitalize();
+              },
+              titleTextStyle: GoogleFonts.poppins(
+                fontSize: screenWidth * (fontSize15 / designWidth),
+                fontWeight: FontWeight.w600,
+                color: colorTextPrimarySplash,
+              ),
+              formatButtonVisible: false,
+              titleCentered: true,
+              leftChevronIcon: Icon(Icons.arrow_back),
+              rightChevronIcon: Icon(Icons.arrow_forward),
+            ),
 
-      child: SizedBox(
-        width: screenWidth * (263 / designWidth),
-        height: screenHeight * (300.35 / designHeight),
-        child: TableCalendar(
-          locale: 'ru_RU',
-          firstDay: kFirstDay,
-          lastDay: kLastDay,
-          focusedDay: _focusedDay,
-          shouldFillViewport: false,
-          startingDayOfWeek: StartingDayOfWeek.monday,
-          rowHeight: screenHeight * (34 / designHeight),
-          daysOfWeekHeight: screenHeight * (25.74 / designHeight),
-          headerStyle: HeaderStyle(
-            titleTextFormatter: (date, locale) {
-              return DateFormat('LLLL', locale).format(date).capitalize();
+            daysOfWeekStyle: DaysOfWeekStyle(
+              dowTextFormatter: (date, locale) {
+                String dayName = DateFormat.E(locale).format(date);
+                return dayName.toUpperCase();
+              },
+              weekdayStyle: GoogleFonts.poppins(
+                fontSize: screenWidth * (fontSize10 / designWidth),
+                fontWeight: FontWeight.w500,
+                color: colorTextSecondaryDashboard,
+              ),
+              weekendStyle: GoogleFonts.poppins(
+                fontSize: screenWidth * (fontSize10 / designWidth),
+                fontWeight: FontWeight.w500,
+                color: colorTextSecondaryDashboard,
+              ),
+            ),
+
+            calendarStyle: CalendarStyle(
+              cellAlignment: Alignment.center,
+              todayDecoration: BoxDecoration(
+                color: colorWhite,
+                shape: BoxShape.circle,
+              ),
+              todayTextStyle: GoogleFonts.poppins(
+                fontSize: screenWidth * (fontSize10 / designWidth),
+                fontWeight: FontWeight.w500,
+                color: colorTextPrimarySplash,
+              ),
+              selectedDecoration: BoxDecoration(
+                color: colorWhite,
+                shape: BoxShape.circle,
+                border: Border.all(color: colorTextPrimarySplash, width: 0.8),
+              ),
+              selectedTextStyle: GoogleFonts.poppins(
+                fontSize: screenWidth * (fontSize10 / designWidth),
+                fontWeight: FontWeight.w500,
+                color: colorTextPrimarySplash,
+              ),
+              defaultTextStyle: GoogleFonts.poppins(
+                fontSize: screenWidth * (fontSize10 / designWidth),
+                fontWeight: FontWeight.w500,
+                color: colorTextPrimary,
+              ),
+              weekendTextStyle: GoogleFonts.poppins(
+                fontSize: screenWidth * (fontSize10 / designWidth),
+                fontWeight: FontWeight.w500,
+                color: colorTextPrimary,
+              ),
+              outsideTextStyle: GoogleFonts.poppins(
+                fontSize: screenWidth * (fontSize10 / designWidth),
+                fontWeight: FontWeight.w500,
+                color: colorTextSecondaryDashboard,
+              ),
+              disabledTextStyle: GoogleFonts.poppins(
+                fontSize: screenWidth * (fontSize10 / designWidth),
+                fontWeight: FontWeight.w500,
+                color: colorTextSecondaryDashboard,
+              ),
+            ),
+            selectedDayPredicate: (day) {
+              return isSameDay(_selectedDay, day);
             },
-            titleTextStyle: GoogleFonts.poppins(
-              fontSize: screenWidth * (fontSize15 / designWidth),
-              fontWeight: FontWeight.w600,
-              color: colorTextPrimarySplash,
-              height: lineHeight15 / fontSize15,
-            ),
-            formatButtonVisible: false,
-            titleCentered: true,
-            leftChevronIcon: Icon(Icons.arrow_back),
-            rightChevronIcon: Icon(Icons.arrow_forward),
-          ),
-
-          daysOfWeekStyle: DaysOfWeekStyle(
-            dowTextFormatter: (date, locale) {
-              String dayName = DateFormat.E(locale).format(date);
-              return dayName.toUpperCase();
+            onDaySelected: (selectedDay, focusedDay) {
+              if (!isSameDay(_selectedDay, selectedDay)) {
+                setState(() {
+                  _selectedDay = selectedDay;
+                  _focusedDay = focusedDay;
+                });
+              }
             },
-            weekdayStyle: GoogleFonts.poppins(
-              fontSize: screenWidth * (fontSize10 / designWidth),
-              fontWeight: FontWeight.w500,
-              color: colorTextSecondaryDashboard,
-              height: lineHeight19 / fontSize10,
-            ),
-            weekendStyle: GoogleFonts.poppins(
-              fontSize: screenWidth * (fontSize10 / designWidth),
-              fontWeight: FontWeight.w500,
-              color: colorTextSecondaryDashboard,
-              height: lineHeight19 / fontSize10,
-            ),
+            onPageChanged: (focusedDay) {
+              _focusedDay = focusedDay;
+            },
           ),
-
-          calendarStyle: CalendarStyle(
-            todayDecoration: BoxDecoration(
-              color: colorWhite,
-              shape: BoxShape.circle,
-            ),
-            todayTextStyle: GoogleFonts.poppins(
-              fontSize: screenWidth * (fontSize10 / designWidth),
-              fontWeight: FontWeight.w500,
-              color: colorTextPrimarySplash,
-              height: lineHeight19 / fontSize10,
-            ),
-            selectedDecoration: BoxDecoration(
-              color: colorWhite,
-              shape: BoxShape.circle,
-              border: Border.all(color: colorTextPrimarySplash, width: 0.8),
-            ),
-            selectedTextStyle: GoogleFonts.poppins(
-              fontSize: screenWidth * (fontSize10 / designWidth),
-              fontWeight: FontWeight.w500,
-              color: colorTextPrimarySplash,
-              height: lineHeight19 / fontSize10,
-            ),
-            defaultTextStyle: GoogleFonts.poppins(
-              fontSize: screenWidth * (fontSize10 / designWidth),
-              fontWeight: FontWeight.w500,
-              color: colorTextPrimary,
-              height: lineHeight19 / fontSize10,
-            ),
-            weekendTextStyle: GoogleFonts.poppins(
-              fontSize: screenWidth * (fontSize10 / designWidth),
-              fontWeight: FontWeight.w500,
-              color: colorTextPrimary,
-              height: lineHeight19 / fontSize10,
-            ),
-            outsideTextStyle: GoogleFonts.poppins(
-              fontSize: screenWidth * (fontSize10 / designWidth),
-              fontWeight: FontWeight.w500,
-              color: colorTextSecondaryDashboard,
-              height: lineHeight19 / fontSize10,
-            ),
-          ),
-          // calendarFormat: _calendarFormat,
-          selectedDayPredicate: (day) {
-            // Use `selectedDayPredicate` to determine which day is currently selected.
-            // If this returns true, then `day` will be marked as selected.
-
-            // Using `isSameDay` is recommended to disregard
-            // the time-part of compared DateTime objects.
-            return isSameDay(_selectedDay, day);
-          },
-          onDaySelected: (selectedDay, focusedDay) {
-            if (!isSameDay(_selectedDay, selectedDay)) {
-              // Call `setState()` when updating the selected day
-              setState(() {
-                _selectedDay = selectedDay;
-                _focusedDay = focusedDay;
-              });
-            }
-          },
-          // onFormatChanged: (format) {
-          //   if (_calendarFormat != format) {
-          //     // Call `setState()` when updating calendar format
-          //     setState(() {
-          //       _calendarFormat = format;
-          //     });
-          //   }
-          // },
-          onPageChanged: (focusedDay) {
-            // No need to call `setState()` here
-            _focusedDay = focusedDay;
-          },
-        ),
+          SizedBox(height: screenHeight * (20 / designHeight)),
+        ],
       ),
-
-      // ),
     );
   }
 }

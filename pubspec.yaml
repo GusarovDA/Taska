@@ -14,6 +14,7 @@ dependencies:
   blur: ^4.0.2
   table_calendar: ^3.2.0
   intl: ^0.20.2
+  easy_date_timeline: ^2.0.9
   
 
 dev_dependencies:

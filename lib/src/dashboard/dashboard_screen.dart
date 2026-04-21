@@ -1,13 +1,13 @@
+import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart' hide SearchBar;
 import 'package:flutter_dev_test/constans/colors.dart';
 import 'package:flutter_dev_test/constans/dimensions.dart';
 import 'package:flutter_dev_test/constans/strings.dart';
 import 'package:flutter_dev_test/design/images.dart';
+import 'package:flutter_dev_test/src/add_task/add_task_screen.dart';
 import 'package:flutter_dev_test/src/dashboard/widgets/calendar.dart';
 import 'package:flutter_dev_test/src/dashboard/widgets/search_bar.dart';
-
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:table_calendar/table_calendar.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -16,6 +16,8 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.sizeOf(context).height;
     var screenWidth = MediaQuery.sizeOf(context).width;
+
+    debugPrint('$screenWidth,  $screenHeight');
     return Scaffold(
       backgroundColor: colorWhite,
       appBar: AppBar(
@@ -110,6 +112,12 @@ class DashboardScreen extends StatelessWidget {
                           child: ElevatedButton(
                             onPressed: () {
                               //добавить ссылку на экран создания задачи
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AddTaskScreen(),
+                                ),
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: colorWhite,
@@ -166,10 +174,9 @@ class DashboardScreen extends StatelessWidget {
                   right: screenWidth * (24 / designWidth),
                 ),
                 child: Stack(
-                  //fdfd
                   children: [
                     SizedBox(
-                      height: screenHeight * (56 / designHeight),
+                      height: screenHeight * (60 / designHeight),
                       width: screenWidth * (327 / designWidth),
                       // color: colorCircleOne,
                     ),
@@ -177,51 +184,40 @@ class DashboardScreen extends StatelessWidget {
                     Positioned(
                       top: screenHeight * (9 / designHeight),
                       child: ClipRect(
-                        child: SizedBox(
-                          // height: screenHeight * (42 / designHeight),
-                          width: screenWidth * (143 / designWidth),
-                          // color: colorButton,
-                          // child: Center(
-                          child: Text(
-                            '20 октября', //поменять чтобы отображалась текущая дата
-                            style: GoogleFonts.poppins(
-                              fontSize:
-                                  screenWidth * (fontSize25 / designWidth),
-                              fontWeight: FontWeight.w600,
-                              color: colorTextPrimary,
-                              letterSpacing: 0,
-                              height: lineHeight25 / fontSize25,
-                            ),
+                        // child: Column(
+                        //   children: [
+                        // SizedBox(
+                        //   width: screenWidth * (143 / designWidth),
+                        // color: colorButton,
+                        // child: Center(
+                        child: Text(
+                          todayFormat, //DateTime.now().toString()поменять чтобы отображалась текущая дата
+                          style: GoogleFonts.poppins(
+                            fontSize: screenWidth * (fontSize25 / designWidth),
+                            fontWeight: FontWeight.w600,
+                            color: colorTextPrimary,
+                            letterSpacing: 0,
+                            height: lineHeight25 / fontSize25,
                           ),
-                          // ),
                         ),
                       ),
                     ),
                     Positioned(
                       top: screenHeight * (42 / designHeight),
                       child: ClipRect(
-                        child: SizedBox(
-                          // height: screenHeight * (42 / designHeight),
-                          width: screenWidth * (143 / designWidth),
-                          // color: colorButton,
-                          // child: Center(
-                          child: Text(
-                            '3 задачи на сегодня', //поменять чтобы отображалась текущее количество задач
-                            style: GoogleFonts.poppins(
-                              fontSize:
-                                  screenWidth * (fontSize14 / designWidth),
-                              fontWeight: FontWeight.w400,
-                              color: colorTextSecondaryDashboard,
-                              letterSpacing: 0,
-                              height: lineHeight14 / fontSize14,
-                            ),
+                        child: Text(
+                          '3 задачи на сегодня', //поменять чтобы отображалась текущее количество задач
+                          style: GoogleFonts.poppins(
+                            fontSize: screenWidth * (fontSize14 / designWidth),
+                            fontWeight: FontWeight.w400,
+                            color: colorTextSecondaryDashboard,
+                            letterSpacing: 0,
+                            height: lineHeight14 / fontSize14,
                           ),
-                          // ),
                         ),
                       ),
                     ),
                     Positioned(
-                      // top: screenHeight * (42 / designHeight),
                       left: screenWidth * (285 / designWidth),
                       child: ClipRect(
                         child: SizedBox(
@@ -229,12 +225,6 @@ class DashboardScreen extends StatelessWidget {
                           width: screenWidth * (42 / designWidth),
                           child: ElevatedButton(
                             onPressed: () {
-                              // showDatePicker(
-                              //   context: context,
-                              //   firstDate: DateTime(2020),
-                              //   lastDate: DateTime(2030),
-
-                              // );
                               showDialog(
                                 context: context,
                                 builder: (context) => TableBasicsExample(),
@@ -279,6 +269,84 @@ class DashboardScreen extends StatelessWidget {
                     ),
                     // ),
                   ],
+                ),
+              ),
+              SizedBox(height: screenHeight * (26 / designHeight)),
+              EasyDateTimeLine(
+                initialDate: DateTime.now(),
+                onDateChange: (selectedDate) {
+                  //обработка выбранной даты
+                },
+
+                locale: 'ru_RU',
+                headerProps: const EasyHeaderProps(showHeader: false),
+                dayProps: EasyDayProps(
+                  dayStructure: DayStructure.dayNumDayStr,
+                  height: screenHeight * (118 / designHeight),
+                  width: screenWidth * (64 / designWidth),
+                  todayStyle: DayStyle(
+                    decoration: BoxDecoration(
+                      color: colorWhite,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: colorButton, width: 1),
+                    ),
+                    dayNumStyle: GoogleFonts.poppins(
+                      fontSize: screenWidth * (fontSize25 / designWidth),
+                      fontWeight: FontWeight.w500,
+                      color: colorTextSecondaryDashboard,
+                      letterSpacing: 0,
+                    ),
+                    dayStrStyle: GoogleFonts.poppins(
+                      fontSize: screenWidth * (fontSize14 / designWidth),
+                      fontWeight: FontWeight.w500,
+                      color: colorTextSecondaryDashboard,
+                      letterSpacing: 0,
+                    ),
+                  ),
+                  inactiveDayStyle: DayStyle(
+                    decoration: BoxDecoration(
+                      color: colorWhite,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: colorBorderNoActive, width: 1),
+                    ),
+                    dayNumStyle: GoogleFonts.poppins(
+                      fontSize: screenWidth * (fontSize25 / designWidth),
+                      fontWeight: FontWeight.w500,
+                      color: colorTextSecondaryDashboard,
+                      letterSpacing: 0,
+                    ),
+                    dayStrStyle: GoogleFonts.poppins(
+                      fontSize: screenWidth * (fontSize14 / designWidth),
+                      fontWeight: FontWeight.w500,
+                      color: colorTextSecondaryDashboard,
+                      letterSpacing: 0,
+                    ),
+                  ),
+                  activeDayStyle: DayStyle(
+                    decoration: BoxDecoration(
+                      color: colorButton,
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: colorShadowCalendar.withValues(alpha: 0.08),
+                          blurRadius: 10,
+                          offset: Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    dayNumStyle: GoogleFonts.poppins(
+                      fontSize: screenWidth * (fontSize25 / designWidth),
+                      fontWeight: FontWeight.w500,
+                      color: colorWhite,
+                      letterSpacing: 0,
+                    ),
+                    dayStrStyle: GoogleFonts.poppins(
+                      fontSize: screenWidth * (fontSize14 / designWidth),
+                      fontWeight: FontWeight.w500,
+                      color: colorWhite,
+                      letterSpacing: 0,
+                    ),
+                  ),
                 ),
               ),
               SizedBox(height: screenHeight * (30 / designHeight)),

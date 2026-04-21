@@ -17,19 +17,17 @@ class SplashScreen extends StatelessWidget {
     var screenHeight = MediaQuery.sizeOf(context).height;
     var screenWidth = MediaQuery.sizeOf(context).width;
     var bottomPading = MediaQuery.paddingOf(context).bottom;
-    return Column(
-      children: [
-        Image(
-          image: splashImg,
-          width: screenWidth,
-          height: screenHeight * (379 / designHeight),
-          fit: BoxFit.cover,
-          alignment: Alignment.topCenter,
-        ),
-
-        // Expanded(
-          // child:
-           Stack(
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Image(
+            image: splashImg,
+            width: screenWidth,
+            height: screenHeight * (379 / designHeight),
+            fit: BoxFit.cover,
+            alignment: Alignment.topCenter,
+          ),
+          Stack(
             children: [
               Container(
                 width: screenWidth,
@@ -65,7 +63,7 @@ class SplashScreen extends StatelessWidget {
                           topRight: Radius.circular(30),
                         ),
                       ),
-
+      
                       width: screenWidth,
                       height: screenHeight * (433 / designHeight),
                       child: Center(
@@ -81,15 +79,13 @@ class SplashScreen extends StatelessWidget {
                                 right: screenWidth * (103 / designWidth),
                               ),
                               child: SizedBox(
-                                // height: screenHeight * 0.059,
                                 width: screenWidth * (167 / designWidth),
                                 child: Text(
                                   'Taska',
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.pollerOne(
                                     fontSize:
-                                        screenWidth *
-                                        (fontSize46 / designWidth),
+                                        screenWidth * (fontSize46 / designWidth),
                                     fontWeight: FontWeight.w400,
                                     height: lineHeight48 / fontSize46,
                                     color: colorTextPrimarySplash,
@@ -102,7 +98,7 @@ class SplashScreen extends StatelessWidget {
                               height: screenHeight * (16 / designHeight),
                               width: screenWidth,
                             ),
-
+      
                             Padding(
                               padding: EdgeInsets.only(
                                 left: screenWidth * (40 / designWidth),
@@ -116,15 +112,14 @@ class SplashScreen extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.poppins(
                                     fontSize:
-                                        screenWidth *
-                                        (fontSize37 / designWidth),
+                                        screenWidth * (fontSize37 / designWidth),
                                     fontWeight: FontWeight.w700,
                                     color: colorTextSecondarySplash,
                                     letterSpacing:
                                         -0.8 * (screenWidth / designWidth),
                                     height:
                                         lineHeight45 /
-                                        fontSize37, //  screenHeight * 0.0014
+                                        fontSize37, 
                                   ),
                                 ),
                               ),
@@ -134,22 +129,20 @@ class SplashScreen extends StatelessWidget {
                               height: screenHeight * (10 / screenHeight),
                               width: screenWidth,
                             ),
-
+      
                             Padding(
                               padding: EdgeInsets.only(
                                 left: screenWidth * (40 / designWidth),
                                 right: screenWidth * (40 / designWidth),
                               ),
                               child: SizedBox(
-                                // height: screenHeight * 0.03,
                                 width: screenWidth * (295 / designWidth),
                                 child: Text(
                                   'Порядок в делах – порядок в уме',
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.poppins(
                                     fontSize:
-                                        screenWidth *
-                                        (fontSize14 / designWidth),
+                                        screenWidth * (fontSize14 / designWidth),
                                     fontWeight: FontWeight.w700,
                                     color: colorTextTertiarySplash.withValues(
                                       alpha: opacity60,
@@ -157,33 +150,32 @@ class SplashScreen extends StatelessWidget {
                                     letterSpacing: 0,
                                     height:
                                         lineHeight24 /
-                                        fontSize14, //screenHeight * 0.002
+                                        fontSize14, 
                                   ),
                                 ),
                               ),
                             ),
-
-                            SizedBox(
-                              height: screenHeight * (66 / designHeight),
-                              width: screenWidth,
-                            ),
-
-                            Center(
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                  left: screenWidth * (40 / designWidth),
-                                  right: screenWidth * (40 / designWidth),
-                                  bottom: bottomPading,
-                                ),
-                                child: Container(
-                                  decoration: shadowDecoration(
-                                    context: context,
-                                    designHeight: designHeight,
+      
+                            Expanded(child: SizedBox()),
+      
+                            SafeArea(
+                              child: Center(
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    left: screenWidth * (40 / designWidth),
+                                    right: screenWidth * (40 / designWidth),
+                                    bottom: bottomPading,
                                   ),
-                                  child: Builder(
-                                    builder: (context) {
-                                      return GradientButtonSplash();
-                                    },
+                                  child: Container(
+                                    decoration: shadowDecoration(
+                                      context: context,
+                                      designHeight: designHeight,
+                                    ),
+                                    child: Builder(
+                                      builder: (context) {
+                                        return GradientButtonSplash();
+                                      },
+                                    ),
                                   ),
                                 ),
                               ),
@@ -197,8 +189,9 @@ class SplashScreen extends StatelessWidget {
               ),
             ],
           ),
-        // ),
-      ],
+          // ),
+        ],
+      ),
     );
   }
 }

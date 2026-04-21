@@ -4,17 +4,25 @@ import 'package:flutter_dev_test/constans/dimensions.dart';
 import 'package:flutter_dev_test/constans/strings.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginAndRegisterTextField extends StatelessWidget {
+class CustomTextField extends StatelessWidget {
   final String? text;
-  final bool? isObscureText;
-  final bool? isEnableSuggestions;
-  final bool? isAutocorrect;
-  const LoginAndRegisterTextField({
+  final bool isObscureText;
+  final bool isEnableSuggestions;
+  final bool isAutocorrect;
+  final int heightForm;
+  final int widthForm;
+  final TextEditingController? controller;
+  final bool isEnabled;
+  const CustomTextField({
     super.key,
     required this.text,
-    this.isObscureText,
-    this.isEnableSuggestions,
-    this.isAutocorrect,
+    this.isObscureText = false,
+    this.isEnableSuggestions = true,
+    this.isAutocorrect = true,
+    this.controller,
+    this.isEnabled = true,
+    required this.heightForm,
+    required this.widthForm,
   });
 
   @override
@@ -22,12 +30,14 @@ class LoginAndRegisterTextField extends StatelessWidget {
     var screenHeight = MediaQuery.sizeOf(context).height;
     var screenWidth = MediaQuery.sizeOf(context).width;
     return SizedBox(
-      height: screenHeight * (60 / designHeight),
-      width: screenWidth * (327 / designWidth),
+      height: screenHeight * (heightForm / designHeight),
+      width: screenWidth * (widthForm / designWidth),
       child: TextField(
-        obscureText: isObscureText ?? false,
-        enableSuggestions: isEnableSuggestions ?? true,
-        autocorrect: isAutocorrect ?? true,
+        controller: controller,
+        enabled: isEnabled,
+        obscureText: isObscureText,
+        enableSuggestions: isEnableSuggestions,
+        autocorrect: isAutocorrect,
         style: GoogleFonts.poppins(
           fontSize: screenWidth * (fontSize16 / designWidth),
           fontWeight: FontWeight.w500,
@@ -53,6 +63,11 @@ class LoginAndRegisterTextField extends StatelessWidget {
           ),
 
           enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            gapPadding: 10,
+            borderSide: const BorderSide(color: colorBorderNoActive, width: 1),
+          ),
+          disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
             gapPadding: 10,
             borderSide: const BorderSide(color: colorBorderNoActive, width: 1),

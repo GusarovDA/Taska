@@ -9,3 +9,5 @@ final plusImg = AssetImage('assets/images/Plus.png');
 final searchImg = AssetImage('assets/images/search.png');
 
 final calendarImg = AssetImage('assets/images/calendar.png');
+
+final arrowDownImg = AssetImage('assets/images/arrow_down.png');

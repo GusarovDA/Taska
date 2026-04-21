@@ -39,6 +39,3 @@ const String textRegisterDirectButton = 'Войти';
 
 const String textButtonSplash = 'Продолжить';
 
-// final textLoginAppBar = 'Добро пожаловать';
-// final textRegisterAppBar = '';
-

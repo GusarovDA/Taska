@@ -4,7 +4,7 @@ import 'package:flutter_dev_test/constans/dimensions.dart';
 import 'package:flutter_dev_test/constans/strings.dart';
 import 'package:flutter_dev_test/shared/auth_redirect.dart';
 import 'package:flutter_dev_test/shared/login_and_register_button.dart';
-import 'package:flutter_dev_test/shared/login_and_register_text_field.dart';
+import 'package:flutter_dev_test/shared/custom_text_field.dart';
 import 'package:flutter_dev_test/shared/decorative_circles.dart';
 import 'package:flutter_dev_test/shared/shadow_decoration.dart';
 import 'package:flutter_dev_test/src/register/register_screen.dart';
@@ -45,9 +45,7 @@ class LoginScreen extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           color: colorTextPrimary,
                           letterSpacing: 0,
-                          height:
-                              lineHeight18 /
-                              fontSize18,
+                          height: lineHeight18 / fontSize18,
                         ),
                       ),
                     ),
@@ -84,7 +82,6 @@ class LoginScreen extends StatelessWidget {
                     height: lineHeight25 / fontSize25,
                   ),
                   textAlign: TextAlign.left,
-                  // softWrap: true,
                 ),
               ),
               SizedBox(
@@ -108,21 +105,22 @@ class LoginScreen extends StatelessWidget {
                 height: screenHeight * (64 / designHeight),
                 width: screenWidth,
               ),
-              LoginAndRegisterTextField(
+              CustomTextField(
                 text: textEmail,
-                isObscureText: false,
-                isEnableSuggestions: true,
-                isAutocorrect: true,
+                heightForm: 60,
+                widthForm: 327,
               ), // поле для ввода email
               SizedBox(
                 height: screenHeight * (30 / designHeight),
                 width: screenWidth,
               ),
-              LoginAndRegisterTextField(
+              CustomTextField(
                 text: textPassword,
                 isObscureText: true,
                 isEnableSuggestions: false,
                 isAutocorrect: false,
+                heightForm: 60,
+                widthForm: 327,
               ), // поле для ввода пароля
               SizedBox(
                 height: screenHeight * (28 / designHeight),

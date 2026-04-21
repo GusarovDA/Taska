@@ -37,13 +37,8 @@ class SearchBar extends StatelessWidget {
                 height: screenHeight * (24 / designHeight),
                 color: colorTextPrimary,
               ),
-
-              // prefixIconConstraints: BoxConstraints(
-              //   minWidth: screenWidth * (24 / designWidth),
-              //   minHeight: screenHeight * (24 / designHeight),
-              // ),
               onPressed: () {
-                // Navigator.pop(context);
+
               },
             ),
           ),
@@ -55,11 +50,10 @@ class SearchBar extends StatelessWidget {
             fontWeight: FontWeight.w500,
             color: colorTextPrimary.withValues(alpha: opacity50),
             letterSpacing: 0,
-            height: lineHeight14 / fontSize14, //screenHeight * (1 / 812)
+            height: lineHeight14 / fontSize14,
           ),
           contentPadding: EdgeInsets.symmetric(
             vertical: screenHeight * (17 / designHeight),
-            // horizontal: screenWidth * (16 / designWidth),
           ),
 
           enabledBorder: OutlineInputBorder(

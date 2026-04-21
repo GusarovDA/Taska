@@ -10,6 +10,8 @@ const Color colorBackgroundGradientEnd = Color(
 
 const Color colorWhite = Color(0xFFFFFFFF);
 
+const Color colorActiveCheckbox = Color(0xFFB1D199);
+
 //текст
 const Color colorTextPrimarySplash = Color(0xFF756EF3);
 const Color colorTextSecondarySplash = Color(0xFF2F394B);
@@ -51,6 +53,13 @@ const Color colorShadowButtonGradientStart = Color(
 const Color colorShadowButtonGradientEnd = Color(
   0xFF5451D6,
 ); //конечный blur в splash
+
+const Color colorShadowCalendar = Color(
+  0xFF317BFA,
+);
+const Color colorAddButton = Color(
+  0xFF000000,
+);
 
 //border
 const Color colorBorderNoActive = Color(0xFFE9F1FF);
