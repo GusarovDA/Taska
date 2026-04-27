@@ -27,12 +27,12 @@ class CustomCheckbox extends StatelessWidget {
           color: value ? colorActiveCheckbox : Colors.transparent,
           borderRadius: BorderRadius.circular(4),
           border: Border.all(
-            color: value ? colorTextPrimary : colorBorderNoActive,
+            color: colorTextPrimary,
             width: 1.13,
           ),
         ),
         child: value
-            ? Icon(Icons.check, size: size * 0.6, color: colorTextPrimary)
+            ? Icon(Icons.check, size: size * 0.7, color: colorTextPrimary,)
             : null,
       ),
     );

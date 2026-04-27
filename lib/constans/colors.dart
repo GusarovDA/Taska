@@ -11,6 +11,8 @@ const Color colorBackgroundGradientEnd = Color(
 const Color colorWhite = Color(0xFFFFFFFF);
 
 const Color colorActiveCheckbox = Color(0xFFB1D199);
+const Color colorDeleteSvipe = Color(0xFFFEB5BD);
+
 
 //текст
 const Color colorTextPrimarySplash = Color(0xFF756EF3);
@@ -30,6 +32,8 @@ const Color colorCircleOne = Color(0xFFFED883);
 const Color colorCircleTwoLogin = Color(0xFFC6C3FB);
 const Color colorCircleTwoRegister = Color(0xFF96BFFE);
 const Color colorCirclethree = Color(0xFFFEB5BD);
+
+const Color colorIconInfo = Color(0xFFB0D97F);
 
 //blur
 

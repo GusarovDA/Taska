@@ -7,6 +7,7 @@ import 'package:flutter_dev_test/shared/login_and_register_button.dart';
 import 'package:flutter_dev_test/shared/custom_text_field.dart';
 import 'package:flutter_dev_test/shared/decorative_circles.dart';
 import 'package:flutter_dev_test/shared/shadow_decoration.dart';
+import 'package:flutter_dev_test/src/dashboard/dashboard_screen.dart';
 import 'package:flutter_dev_test/src/register/register_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -133,7 +134,17 @@ class LoginScreen extends StatelessWidget {
                   context: context,
                   designHeight: designHeight,
                 ),
-                child: LoginAndRegisterButton(text: textLogin),
+                child: LoginAndRegisterButton(
+                  text: textLogin,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DashboardScreen(),
+                      ),
+                    );
+                  },
+                ),
               ),
               SizedBox(
                 height: screenHeight * (31 / designHeight),

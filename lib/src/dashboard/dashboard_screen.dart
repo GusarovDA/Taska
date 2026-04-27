@@ -4,6 +4,7 @@ import 'package:flutter_dev_test/constans/colors.dart';
 import 'package:flutter_dev_test/constans/dimensions.dart';
 import 'package:flutter_dev_test/constans/strings.dart';
 import 'package:flutter_dev_test/design/images.dart';
+import 'package:flutter_dev_test/shared/task_list.dart';
 import 'package:flutter_dev_test/src/add_task/add_task_screen.dart';
 import 'package:flutter_dev_test/src/dashboard/widgets/calendar.dart';
 import 'package:flutter_dev_test/src/dashboard/widgets/search_bar.dart';
@@ -16,12 +17,12 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.sizeOf(context).height;
     var screenWidth = MediaQuery.sizeOf(context).width;
-
     debugPrint('$screenWidth,  $screenHeight');
     return Scaffold(
       backgroundColor: colorWhite,
       appBar: AppBar(
         backgroundColor: colorWhite,
+        surfaceTintColor: colorWhite,
         automaticallyImplyLeading: false,
         toolbarHeight: screenHeight * (93 / designHeight),
         titleSpacing: 0,
@@ -350,6 +351,12 @@ class DashboardScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: screenHeight * (30 / designHeight)),
+              Padding(
+                padding: EdgeInsets.only(
+                  right: screenWidth * (24 / designWidth),
+                ),
+                child: TaskList(),
+              ),
             ],
           ),
         ),

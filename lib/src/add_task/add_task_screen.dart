@@ -1,22 +1,56 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dev_test/constans/colors.dart';
 import 'package:flutter_dev_test/constans/dimensions.dart';
 import 'package:flutter_dev_test/constans/strings.dart';
 import 'package:flutter_dev_test/design/images.dart';
+import 'package:flutter_dev_test/models/task.dart';
 import 'package:flutter_dev_test/shared/login_and_register_button.dart';
 import 'package:flutter_dev_test/shared/custom_text_field.dart';
 import 'package:flutter_dev_test/src/add_task/widgets/deadline_controller.dart';
 import 'package:flutter_dev_test/src/add_task/widgets/priority_button.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
 
-class AddTaskScreen extends StatelessWidget {
+class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({super.key});
+
+  @override
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  final TextEditingController _controllerTitle = TextEditingController();
+  final TextEditingController _controllerTag = TextEditingController();
+
+  void _saveTask() {
+    final String title = _controllerTitle.text;
+    final String tag = _controllerTag.text;
+
+    if (title.isNotEmpty & tag.isNotEmpty) {
+      final Task newTask = Task(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        title: title,
+        tag: tag,
+      );
+
+      final Box<Task> taskBox = Hive.box<Task>('tasks_box');
+      taskBox.add(newTask);
+      Navigator.pop(context);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controllerTitle.dispose();
+    _controllerTag.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.sizeOf(context).height;
     var screenWidth = MediaQuery.sizeOf(context).width;
+
     return Scaffold(
       backgroundColor: colorWhite,
       appBar: AppBar(
@@ -50,11 +84,6 @@ class AddTaskScreen extends StatelessWidget {
                     elevation: 0,
                     surfaceTintColor: Colors.transparent,
                     shadowColor: Colors.transparent,
-
-                    // fixedSize: Size(
-                    //   screenWidth * (42 / designWidth),
-                    //   screenHeight * (42 / designHeight),
-                    // ),
                   ),
 
                   child: SizedBox(
@@ -112,6 +141,7 @@ class AddTaskScreen extends StatelessWidget {
               SizedBox(height: screenHeight * (16 / designHeight)),
               CustomTextField(
                 text: 'Введите задачу',
+                controller: _controllerTitle,
                 heightForm: 64,
                 widthForm: 327,
               ),
@@ -147,7 +177,7 @@ class AddTaskScreen extends StatelessWidget {
 
               DropdownMenu(
                 width: screenWidth * (327 / designWidth),
-                // initialSelection: 'Без тега',
+                controller: _controllerTag,
                 trailingIcon: Image(
                   image: arrowDownImg,
                   color: colorBorderActive,
@@ -342,83 +372,7 @@ class AddTaskScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: screenHeight * (16 / designHeight)),
-
-              // Container(
-              //   height: screenHeight * (40 / designHeight),
-              //   width: screenWidth * (92 / designWidth),
-              //   decoration: BoxDecoration(
-              //     color: colorWhite,
-              //     borderRadius: BorderRadius.circular(8),
-              //     border: Border.all(width: 1, color: colorBorderNoActive),
-              //   ),
-              //   child: TextButton(
-              //     onPressed: () {},
-              //     child: Center(
-              //       child: Text(
-              //         'Низкий',
-              //         style: GoogleFonts.poppins(
-              //           fontSize: screenWidth * (fontSize14 / designWidth),
-              //           fontWeight: FontWeight.w500,
-              //           color: colorTextPrimary.withValues(alpha: 0.5),
-              //           letterSpacing: 0,
-              //           height: lineHeight14 / fontSize14,
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
               PriorityButton(),
-
-              // Expanded(child: SizedBox()),
-              // Container(
-              //   height: screenHeight * (40 / designHeight),
-              //   width: screenWidth * (92 / designWidth),
-              //   decoration: BoxDecoration(
-              //     color: colorWhite,
-              //     borderRadius: BorderRadius.circular(8),
-              //     border: Border.all(width: 1, color: colorBorderNoActive),
-              //   ),
-              //   child: TextButton(
-              //     onPressed: () {},
-              //     child: Center(
-              //       child: Text(
-              //         'Средний',
-              //         style: GoogleFonts.poppins(
-              //           fontSize: screenWidth * (fontSize14 / designWidth),
-              //           fontWeight: FontWeight.w500,
-              //           color: colorTextPrimary.withValues(alpha: 0.5),
-              //           letterSpacing: 0,
-              //           height: lineHeight14 / fontSize14,
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              // Expanded(child: SizedBox()),
-              // Container(
-              //   height: screenHeight * (40 / designHeight),
-              //   width: screenWidth * (92 / designWidth),
-              //   decoration: BoxDecoration(
-              //     color: colorWhite,
-              //     borderRadius: BorderRadius.circular(8),
-              //     border: Border.all(width: 1, color: colorBorderNoActive),
-              //   ),
-              //   child: TextButton(
-              //     onPressed: () {},
-              //     child: Center(
-              //       child: Text(
-              //         'Высокий',
-              //         style: GoogleFonts.poppins(
-              //           fontSize: screenWidth * (fontSize14 / designWidth),
-              //           fontWeight: FontWeight.w500,
-              //           color: colorTextPrimary.withValues(alpha: 0.5),
-              //           letterSpacing: 0,
-              //           height: lineHeight14 / fontSize14,
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
               SizedBox(height: screenHeight * (30 / designHeight)),
               SafeArea(
                 child: Center(
@@ -434,7 +388,12 @@ class AddTaskScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: LoginAndRegisterButton(text: 'Добавить'),
+                    child: LoginAndRegisterButton(
+                      text: 'Добавить',
+                      onPressed: () {
+                        _saveTask();
+                      },
+                    ),
                   ),
                 ),
               ),

@@ -55,7 +55,7 @@ class CustomTextField extends StatelessWidget {
             fontWeight: FontWeight.w400,
             color: colorTextSecondary,
             letterSpacing: 0,
-            height: lineHeight16 / fontSize16, //screenHeight * (1 / 812)
+            height: lineHeight16 / fontSize16, 
           ),
           contentPadding: EdgeInsets.symmetric(
             vertical: screenHeight * (22 / designHeight),

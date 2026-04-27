@@ -1,24 +1,21 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dev_test/constans/colors.dart';
 import 'package:flutter_dev_test/constans/dimensions.dart';
 import 'package:flutter_dev_test/constans/strings.dart';
-import 'package:flutter_dev_test/src/dashboard/dashboard_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginAndRegisterButton extends StatelessWidget {
   final String? text;
-  const LoginAndRegisterButton({super.key, required this.text});
+  final VoidCallback? onPressed;
+  const LoginAndRegisterButton({super.key, required this.text, this.onPressed,});
 
   @override
   Widget build(BuildContext context) {
+    
     var screenWidth = MediaQuery.sizeOf(context).width;
     return ElevatedButton(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => DashboardScreen()),
-        );
-      },
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: Color(0xFF756EF3),
         shape: RoundedRectangleBorder(
